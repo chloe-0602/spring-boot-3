@@ -2,6 +2,7 @@ package com.chloe.curd.crud.controller;
 
 import com.chloe.curd.crud.entity.Dept;
 import com.chloe.curd.crud.service.DeptService;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class DeptController {
     @Autowired
     DeptService deptService;
 
-
+    @Operation(description = "获取数据",summary = "获取")
     @GetMapping("/dept/{id}")
     public Dept getDept( @PathVariable("id") Long id){
         return deptService.getDeptById(id);
