@@ -52,4 +52,5 @@ class Boot312MessageStuApplicationTests {
         log.info("person 发送成功......");
     }
 
+
 }
