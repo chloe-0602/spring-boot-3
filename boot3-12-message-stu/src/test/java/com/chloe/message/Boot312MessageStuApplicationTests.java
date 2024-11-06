@@ -1,6 +1,8 @@
 package com.chloe.message;
 
+import com.chloe.message.entity.Person;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,23 +17,23 @@ class Boot312MessageStuApplicationTests {
 
     @Autowired
     private KafkaTemplate kafkaTemplate;
+    String newsTopic = "news";
+
     @Test
     public void testKafkaSend(){
-        String topic = "news";
-        CompletableFuture future = kafkaTemplate.send(topic, "hhh1", "hhhh value 1");
+        CompletableFuture future = kafkaTemplate.send(newsTopic, "hhh1", "hhhh value 1");
         future.join();
         log.info("信息发送成功......");
     }
 
     @Test
     public void testKafka1w(){
-        String topic = "news";
         CompletableFuture[] futures = new CompletableFuture[10000];
 
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
         for (int i = 0; i < 10000; i++) {
-            CompletableFuture future = kafkaTemplate.send(topic, "msg"+i, "value" + i);
+            CompletableFuture future = kafkaTemplate.send(newsTopic, "msg"+i, "value" + i);
             futures[i] = future;
         }
 
@@ -43,7 +45,11 @@ class Boot312MessageStuApplicationTests {
         log.info("发送1w条消息成功,耗时: {} ms", totalTimeMillis);
     }
 
-
-
+    @Test
+    public void testSendPerson(){
+        CompletableFuture future = kafkaTemplate.send(newsTopic, "person", new Person(1L, "张三", "1323@qq.com"));
+        future.join();
+        log.info("person 发送成功......");
+    }
 
 }
