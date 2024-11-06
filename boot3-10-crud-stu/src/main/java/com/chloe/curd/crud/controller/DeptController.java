@@ -2,8 +2,11 @@ package com.chloe.curd.crud.controller;
 
 import com.chloe.curd.crud.entity.Dept;
 import com.chloe.curd.crud.service.DeptService;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 
 import java.util.List;
 
@@ -12,6 +15,7 @@ import java.util.List;
  * @Description
  * @create 2023-04-28 16:41
  */
+@Tag(name = "部门", description = "部门信息接口文档")
 @RestController
 public class DeptController {
 
@@ -20,7 +24,7 @@ public class DeptController {
 
 
     @GetMapping("/dept/{id}")
-    public Dept getDept(@PathVariable("id") Long id){
+    public Dept getDept( @PathVariable("id") Long id){
         return deptService.getDeptById(id);
     }
 
@@ -35,7 +39,7 @@ public class DeptController {
         return "ok";
     }
     @DeleteMapping("/dept/{id}")
-    public String deleteDept(@PathVariable("id")  Long id){
+    public String deleteDept( @PathVariable("id") Long id){
         deptService.deleteDept(id);
         return "ok";
     }

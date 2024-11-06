@@ -26,7 +26,7 @@ public class DeptController {
     //Knife4j
     @Operation(summary = "查询",description = "按照id查询部门")
     @GetMapping("/dept/{id}")
-    public Dept getDept(@PathVariable("id") Long id){
+    public Dept getDept(@PathVariable("id") @Parameter(description = "部门id")  Long id){
         return deptService.getDeptById(id);
     }
 

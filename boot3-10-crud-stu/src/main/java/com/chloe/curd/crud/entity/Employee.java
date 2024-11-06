@@ -1,5 +1,6 @@
 package com.chloe.curd.crud.entity;
 
+
 import lombok.Data;
 
 @Data
