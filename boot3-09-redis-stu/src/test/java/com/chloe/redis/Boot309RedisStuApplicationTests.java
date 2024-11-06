@@ -84,4 +84,9 @@ class Boot309RedisStuApplicationTests {
     public void testPerson(){
         redisTemplate.opsForValue().set("person", new Person(1L, "张三", 20));
     }
+    
+    @Test
+    public void testJedis(){
+        redisTemplate.opsForValue().set("p1", new Person(2L, "李四", 32));
+    }
 }
