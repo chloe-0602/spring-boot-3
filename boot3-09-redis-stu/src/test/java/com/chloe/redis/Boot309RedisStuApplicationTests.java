@@ -1,10 +1,12 @@
 package com.chloe.redis;
 
+import com.chloe.redis.entity.Person;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ZSetOperations;
 
@@ -23,6 +25,9 @@ class Boot309RedisStuApplicationTests {
 
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
+
+    @Autowired
+    private RedisTemplate redisTemplate;
 
     @Test
     public void testString(){
@@ -70,5 +75,13 @@ class Boot309RedisStuApplicationTests {
         String value = stringTypedTuple.getValue();
         Double score = stringTypedTuple.getScore();
         log.info("max score info => value: {} , score: {}", value, score);
+    }
+
+    /**
+     * 序列化对象
+     */
+    @Test
+    public void testPerson(){
+        redisTemplate.opsForValue().set("person", new Person(1L, "张三", 20));
     }
 }
