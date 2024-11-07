@@ -57,7 +57,7 @@ public class AppSecurityConfig {
 
         UserDetails wangwu = User.withUsername("wangwu")
                 .password(passwordEncoder.encode("123456"))
-                .roles("admin")
+                .roles("admin","world_role")
                 .authorities("file_write")
                 .build();
         return new InMemoryUserDetailsManager(zhangsan,lisi,wangwu);

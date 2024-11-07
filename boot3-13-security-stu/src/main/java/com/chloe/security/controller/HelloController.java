@@ -1,5 +1,7 @@
 package com.chloe.security.controller;
 
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,5 +19,10 @@ public class HelloController {
     @RequestMapping("/hello")
     public String hello(){
         return "hello Spring Security!!!";
+    }
+    @PreAuthorize("hasRole('world_role')")
+    @RequestMapping("/world")
+    public String world(){
+        return "world......";
     }
 }
