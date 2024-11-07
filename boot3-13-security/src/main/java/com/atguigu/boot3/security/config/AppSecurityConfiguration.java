@@ -67,7 +67,7 @@ public class AppSecurityConfiguration {
                 .authorities("file_write","world_exec")
                 .build();
 
-        //默认内存中保存所有用户信息
+        //模拟内存中保存所有用户信息
         InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager(zhangsan,lisi,wangwu);
         return manager;
     }
